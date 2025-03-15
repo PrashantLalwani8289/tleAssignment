@@ -1,0 +1,128 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap'); */
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+
+.form-control {
+  width: 100%; /* Full width of the container */
+  padding: 0.75rem; /* Padding inside the input */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background color */
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-size: 1rem; /* Font size */
+  line-height: 1.5; /* Line height */
+}
+
+.form-control:focus {
+  border-color: #000000; /* Blue border on focus */
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Highlighted shadow on focus */
+}
+
+.dark-mode {
+  color: #000  !important;
+}
+
+
+.error {
+  color: #e74c3c; /* Red color for error text */
+  font-size: 0.875rem; /* Slightly smaller font size for error messages */
+  margin-top: -10px; 
+}
+
+.nav-item .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: 1rem;
+  color: #fffdfd;
+  text-align: left;
+  list-style: none;
+  background-color: grey;
+  background-clip: padding-box;
+  border: 2px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+
+
+
+/* Show the dropdown menu on hover */
+.nav-item:hover .dropdown-menu {
+  display: block;
+}
+
+ 
+@media print {
+	body {
+		margin: 0 !important;
+	}
+}
+ 
+.main-container {
+	font-family: 'Lato';
+	width: fit-content;
+	margin-left: auto;
+	margin-right: auto;
+}
+ 
+.ck-content {
+	font-family: 'Lato';
+	line-height: 1.6;
+	word-break: break-word;
+}
+ 
+.editor-container_classic-editor .editor-container__editor {
+	min-width: 795px;
+	max-width: 795px;
+}
+ 
+.editor-container_include-block-toolbar {
+	margin-left: 42px;
+}
+
