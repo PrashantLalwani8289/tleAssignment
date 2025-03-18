@@ -3,11 +3,15 @@ import requests
 from bs4 import BeautifulSoup
 from app.models.ContestLinks import ContestLinks
 from sqlalchemy.orm import Session
+from app.config import env_variables
 
+env_data = env_variables()
 
 from app.features.codeforces.schema import AddLink
 
-CODEFORCES_URL = "https://codeforces.com/api/contest.list?gym=false"
+#get these variables from the environment variables
+YOUTUBE_API_KEY = env_data["YOUTUBE_API_KEY"]
+CODEFORCES_URL = env_data["CODEFORCES_URL"]
 
 async def get_contests():
         try:
@@ -98,3 +102,24 @@ async def get_links( db : Session):
               "success": False, 
               "message": "Error adding pcd link"         
          }
+    
+async def get_contest_id_from_video(video_id):
+    url = f"https://www.googleapis.com/youtube/v3/videos?part=snippet&id={video_id}&key={YOUTUBE_API_KEY}"
+    response = requests.get(url).json()
+    
+    if "items" in response and len(response["items"]) > 0:
+        snippet = response["items"][0]["snippet"]
+        
+        # Check in tags
+        if "tags" in snippet:
+            for tag in snippet["tags"]:
+                if tag.startswith("contest_id:"):
+                    return tag.split(":")[1]  
+        
+        # Check in description
+        description = snippet.get("description", "")
+        for line in description.split("\n"):
+            if line.lower().startswith("contest_id:"):
+                return line.split(":")[1].strip()
+    
+    return None

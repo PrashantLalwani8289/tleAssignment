@@ -1,6 +1,9 @@
 from bs4 import BeautifulSoup
 import requests
-CODECHEF_URL = "https://www.codechef.com/api/list/contests/all?sort_by=START&sorting_order=asc&offset=0&mode=all"
+from app.config import env_variables
+
+env_data = env_variables()
+CODECHEF_URL = env_data["CODECHEF_URL"]
 
 async def get_contests():
     try:

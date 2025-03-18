@@ -3,9 +3,11 @@ import requests
 
 from fastapi import FastAPI, Query
 import httpx
+from app.config import env_variables
 
+env_data = env_variables()
 
-LEETCODE_URL = "https://leetcode.com/graphql/"
+LEETCODE_URL = env_data["LEETCODE_URL"]
 
 
 async def get_past_contests(pageNo: int = 1, numPerPage: int = 100):
