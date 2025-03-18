@@ -1,6 +1,6 @@
 # Contest API
 
-This is a **FastAPI-based application** that provides APIs to fetch contest details from popular competitive programming platforms: **CodeChef, Codeforces, and LeetCode**. The application retrieves contest data using external APIs from these platforms and includes additional features like managing Codeforces contest links in a PostgreSQL database.
+This is a **FastAPI-based application** that provides APIs to fetch contest details from popular competitive programming platforms: **CodeChef, Codeforces, and LeetCode**. The application retrieves contest data using external APIs from these platforms and includes additional features like managing Codeforces contest links in a PostgreSQL database and adding **YouTube webhooks** for contest video management.
 
 ## Features
 
@@ -9,6 +9,7 @@ This is a **FastAPI-based application** that provides APIs to fetch contest deta
 - Fetch contest details from **Codeforces** and manage contest links (add, update, retrieve multiple links) in a database.
 - Fetch past contests and top two upcoming contests from **LeetCode** using GraphQL.
 - Structured responses with success status and error handling.
+- **YouTube Webhook Integration**: Automatically associates PCD links with respective contest videos.
 
 ### Frontend (React + TypeScript)
 - Displays contest lists fetched from CodeChef, Codeforces, and LeetCode.
@@ -55,8 +56,7 @@ uvicorn app.main:app --port 3000
 - The API will be available at: **http://localhost:3000**
 
 ### Run the Frontend
-1. Navigate to the New Folder which is a frontend.
-
+1. Navigate to the frontend folder.
 2. Install dependencies:
 ```bash
 npm install  # or yarn install
@@ -105,9 +105,16 @@ npm run dev  # or yarn dev
   - Fetches the top two upcoming contests and past contests from LeetCode.
   - **Response:** JSON with success status and contest data.
 
+### YouTube Webhook
+- **POST/GET** `/codeforces/youtube-webhook`
+  - Handles YouTube webhook verification and contest video notifications.
+  - **GET Request:** Responds to YouTube's challenge request.
+  - **POST Request:** Processes notifications and extracts the contest ID from video metadata.
+  - **Implementation:**
+    - `async def subscribe_to_youtube(channel_id: str, callback_url: str)`: Subscribes to YouTube webhook for a specific channel.
+    - `@codeforces_router.api_route(routes.YOUTUBE_WEBHOOK, methods=["GET", "POST"])`: Handles incoming YouTube webhook requests.
+    - `async def get_contest_id_from_video(video_id)`: Extracts contest ID from the video’s description or tags and associates it with the contest link.
+
 ---
 
-
-
-
-
+This API ensures smooth integration with competitive programming platforms while also allowing automated YouTube contest video management. 🚀
